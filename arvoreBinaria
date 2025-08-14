@@ -1,0 +1,53 @@
+// Classe do nó da árvore
+class No(val valor: Int) {
+    var esquerda: No? = null
+    var direita: No? = null
+}
+
+// Classe da árvore binária
+class ArvoreBinaria {
+    var raiz: No? = null
+
+    // Inserção de valor
+    fun inserir(valor: Int) {
+        raiz = inserirRec(raiz, valor)
+    }
+
+    private fun inserirRec(no: No?, valor: Int): No {
+        if (no == null) return No(valor)
+
+        if (valor < no.valor) {
+            no.esquerda = inserirRec(no.esquerda, valor)
+        } else {
+            no.direita = inserirRec(no.direita, valor)
+        }
+        return no
+    }
+
+    // EM ORDEM (esquerda, raiz, direita)
+    fun emOrdem(no: No? = raiz) {
+        if (no != null) {
+            emOrdem(no.esquerda)
+            print("${no.valor} ")
+            emOrdem(no.direita)
+        }
+    }
+
+    // PRÉ-ORDEM (raiz, esquerda, direita)
+    fun preOrdem(no: No? = raiz) {
+        if (no != null) {
+            print("${no.valor} ")
+            preOrdem(no.esquerda)
+            preOrdem(no.direita)
+        }
+    }
+
+    // PÓS-ORDEM (esquerda, direita, raiz)
+    fun posOrdem(no: No? = raiz) {
+        if (no != null) {
+            posOrdem(no.esquerda)
+            posOrdem(no.direita)
+            print("${no.valor} ")
+        }
+    }
+}
