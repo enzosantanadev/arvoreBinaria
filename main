@@ -1,0 +1,22 @@
+fun main() {
+    val arvore = ArvoreBinaria()
+
+    println("Digite números para adicionar na árvore. Digite 'fim' para encerrar.")
+
+    while (true) {
+        print("Número: ")
+        val entrada = readLine() ?: break
+        if (entrada.lowercase() == "fim") break
+        try {
+            val numero = entrada.toInt()
+            arvore.inserir(numero)
+        } catch (e: NumberFormatException) {
+            println("Digite um número válido ou 'fim'.")
+        }
+    }
+
+    println("\n--- Percursos ---")
+    print("Em ordem: "); arvore.emOrdem(); println()
+    print("Pré-ordem: "); arvore.preOrdem(); println()
+    print("Pós-ordem: "); arvore.posOrdem(); println()
+}
